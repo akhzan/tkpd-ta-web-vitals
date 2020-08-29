@@ -9,13 +9,13 @@ import Footer from '../../../components/Footer';
 
 const containerStyle = {
   width: '100%',
-	margin: '1em auto',
-}
+  margin: '1em auto',
+};
 
 const breadcrumbStyle = {
-	color: '#fff',
-	textDecoration: 'none',
-	paddingRight: '5px',
+  color: '#fff',
+  textDecoration: 'none',
+  paddingRight: '5px',
 };
 
 const productCard = {
@@ -27,6 +27,7 @@ const productCard = {
 
 const productImg = {
   width: '100%',
+  height: '200px',
   objectFit: 'cover',
 };
 
@@ -48,30 +49,30 @@ const productPrice = {
 const actionWrapper = {
   position: 'fixed',
   bottom: '0',
-	left: 'initial',
-	width: '100%',
-	height: '65px',
-	display: 'flex',
-	alignItems: 'center'
+  left: 'initial',
+  width: '100%',
+  height: '65px',
+  display: 'flex',
+  alignItems: 'center',
 };
 
 const btnBuy = {
   backgroundColor: '#ff5722',
-	color: '#fff',
-	padding: '12px',
-	fontSize: '14px',
-	fontWeight: 'bold',
+  color: '#fff',
+  padding: '12px',
+  fontSize: '14px',
+  fontWeight: 'bold',
   margin: '0 10px',
-	width: '100%',
-	border: 0,
-	outline: 'none',
-	cursor: 'pointer',
-	borderRadius: '4px',
+  width: '100%',
+  border: 0,
+  outline: 'none',
+  cursor: 'pointer',
+  borderRadius: '4px',
 };
 
 const productTimestamp = {
   paddingLeft: '1em',
-  marginBottom: 0
+  marginBottom: 0,
 };
 
 const { API_URL } = process.env;
@@ -85,31 +86,39 @@ function PdpComponent({ match }) {
     <div className="App" data-testid="pdp-container">
       <Header />
       <main style={containerStyle}>
-				<div style={{ marginBottom: '1em', paddingLeft: '1em' }}>
-					<Link to="/" style={breadcrumbStyle}>Beranda</Link>
-					<span>&nbsp;&gt;&nbsp;</span>
-					<Link to={`/${id}`} style={breadcrumbStyle}>Product Detail</Link>
-				</div>
+        <div style={{ marginBottom: '1em', paddingLeft: '1em' }}>
+          <Link to="/" style={breadcrumbStyle}>
+            Beranda
+          </Link>
+          <span>&nbsp;&gt;&nbsp;</span>
+          <Link to={`/${id}`} style={breadcrumbStyle}>
+            Product Detail
+          </Link>
+        </div>
         {!loading && data && data.data && (
-					<div className="pdp" style={productCard}>
-            <img
-              src={data.data.image} alt={data.data.name}
-              style={productImg}
-            />
-						<div style={productInfo}>
-							<div style={productName}>{data.data.name}</div>
-							<div style={productPrice}>{data.data.price}</div>
-							<RatingReview ratingCount={data.data.rating} reviewCount={data.data.review} />
-						</div>
-					</div>
+          <div className="pdp" style={productCard}>
+            <img src={data.data.image} alt={data.data.name} style={productImg} />
+            <div style={productInfo}>
+              <div style={productName}>{data.data.name}</div>
+              <div style={productPrice}>{data.data.price}</div>
+              <RatingReview ratingCount={data.data.rating} reviewCount={data.data.review} />
+            </div>
+          </div>
         )}
 
         <p style={productTimestamp}>Last Updated: {moment().format('DD MMMM YYYY')}.</p>
       </main>
 
-			<div style={actionWrapper}>
-				<button style={btnBuy} onClick={() => { alert('Thank you...') }}>Beli</button>
-			</div>
+      <div style={actionWrapper}>
+        <button
+          style={btnBuy}
+          onClick={() => {
+            alert('Thank you...');
+          }}
+        >
+          Beli
+        </button>
+      </div>
 
       <Footer />
     </div>
